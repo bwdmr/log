@@ -12,7 +12,6 @@ extension Application {
     }
     
     
-    
     public struct Log: Sendable {
         public let _application: Application
         

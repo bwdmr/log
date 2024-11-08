@@ -3,7 +3,7 @@ import Vapor
 
 
 
-extension LogError: @retroactive AbortError {
+extension LogKitError: @retroactive AbortError {
     public var status: HTTPResponseStatus {
         .unauthorized
     }

@@ -1,5 +1,5 @@
 {
-  "originHash" : "354642296c7e0f58dfb36e51dcaa6ebc431cb00e01d2afba3dbc0d3318fb8d90",
+  "originHash" : "0ae41619305e298e8ad6ac21ce9ed5dccea587916d1cd65ffec0f61003c7125c",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -26,6 +26,15 @@
       "state" : {
         "revision" : "966d89ae64cd71c652a1e981bc971de59d64f13d",
         "version" : "4.15.1"
+      }
+    },
+    {
+      "identity" : "log-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bwdmr/log-kit.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "f1291c4be5b3f6a72fad7b15d96851d91117f47f"
       }
     },
     {
@@ -105,8 +114,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log.git",
       "state" : {
-        "revision" : "9cb486020ebf03bfa5b5df985387a14a98744537",
-        "version" : "1.6.1"
+        "branch" : "main",
+        "revision" : "1efe6f812904b34ed76ba28fd1f3e9f3bc94f8ec"
       }
     },
     {
