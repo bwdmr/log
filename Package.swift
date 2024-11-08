@@ -12,26 +12,21 @@ let package = Package(
       .tvOS(.v15),
       .watchOS(.v8),
     ],
-    products: [
-        .library( name: "Log", targets: ["log"]),
-    ],
+    products: [ .library( name: "Log", targets: ["Log"] ) ],
     dependencies: [
       .package(url: "https://github.com/vapor/vapor.git", from: "4.106.0"),
-      .package(url: "https://github.com/bwdmr/log-kit.git", from: "main")
+      .package(url: "https://github.com/bwdmr/log-kit.git", branch: "main")
     ],
     targets: [
-        .target( name: "Log",
-                 dependencies: [
-                  .product(name: "LogKit", package: "LogKit"),
-                  .product(name: "Vapor", package: "vapor")
-                 ]
-               ),
+        .target(
+          name: "Log",
+          dependencies: [
+            .product(name: "Vapor", package: "vapor"),
+            .product(name: "LogKit", package: "log-kit")
+          ]),
           .testTarget(
             name: "LogTests",
-            dependencies: [
-              .target(name: "Log"),
-              .product(name: "XCTVapor", package: "vapor")
-            ]
+            dependencies: [ .target(name: "Log"), .product(name: "XCTVapor", package: "vapor") ]
         ),
     ],
     swiftLanguageModes: [ .v6 ]

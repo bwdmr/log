@@ -4,13 +4,11 @@ import NIOConcurrencyHelpers
 
 @_exported import LogKit
 
-
-
+/*
 extension Application {
     public var log: Log {
         .init(_application: self)
     }
-    
     
     
     public struct Log: Sendable {
@@ -24,9 +22,9 @@ extension Application {
             private struct SendableBox: Sendable {
                 var services: LogService
             }
-            
+          
             private let sendableBox: NIOLockedValueBox<SendableBox>
-            
+          
             var services: LogService {
                 get {
                     self.sendableBox.withLockedValue { box in
@@ -54,8 +52,9 @@ extension Application {
         
         private var storage: Storage {
             if let existing = self._application.storage[Key.self] {
-                return existing
-            } else {
+                return existing }
+          
+            else {
                 let new = Storage()
                 self._application.storage[Key.self] = new
                 return new
@@ -63,3 +62,4 @@ extension Application {
         }
     }
 }
+*/
