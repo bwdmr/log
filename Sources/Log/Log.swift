@@ -2,18 +2,29 @@ import LogKit
 import Vapor
 import NIOConcurrencyHelpers
 
+@_exported import LogKit
+
+
 extension Request {
     public var log: Log { .init(_request: self) }
     
     public struct Log: Sendable {
         public let _request: Request
         
+        public func log() async throws {
+            guard let _service = self._request.application.log.service
+            else { throw LogKitError.missingService() }
+            
+        }
+        
+        // log,
         //public func log() throws {
         //    guard let service = self._log._request.application.log.service
         //    else { throw Abort(.internalServerError) }
         //
         //    service
         //}
+        
     }
 }
 
@@ -88,9 +99,20 @@ extension Application {
         }
         
         
+        public func get(id: LogKitIdentifier) async throws -> any LogKitServiceable {
+            guard let _service = self._application.log.service,
+                  let service = await _service[id]
+            else { throw LogKitError.missingService() }
+            
+            return service
+        }
+        
+        
         public func make(service: any LogKitServiceable)
         async throws {
-            try await self._application.log.service?.register(service)
+            guard let _service = self._application.log.service else {
+                throw LogKitError.missingService() }
+            try await _service.register(service)
         }
     }
 }
