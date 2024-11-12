@@ -11,20 +11,10 @@ extension Request {
     public struct Log: Sendable {
         public let _request: Request
         
-        public func log() async throws {
-            guard let _service = self._request.application.log.service
-            else { throw LogKitError.missingService() }
-            
+        public func log<Service>(_ service: Service, action: Service.Action, entry: Service.Entry)
+        async throws where Service: LogKitServiceable {
+            try await service.log(action, entry: entry)
         }
-        
-        // log,
-        //public func log() throws {
-        //    guard let service = self._log._request.application.log.service
-        //    else { throw Abort(.internalServerError) }
-        //
-        //    service
-        //}
-        
     }
 }
 
