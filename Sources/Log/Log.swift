@@ -14,8 +14,8 @@ extension Request {
         public let _request: Request
         
         public func log<Service>(_ service: Service, entry: Service.Entry)
-        async throws where Service: LogKitServiceable {
-            try await service.log(entry)
+        throws where Service: LogKitServiceable {
+            try service.log(entry)
         }
     }
 }
@@ -91,7 +91,7 @@ extension Application {
         }
         
         
-        public func get(id: LogKitIdentifier) async throws -> any LogKitServiceable {
+        public func get(id: LogKitIdentifier) async throws-> any LogKitServiceable {
             guard let _service = self._application.log.service,
                   let service = await _service[id]
             else { throw LogKitError.missingService() }
