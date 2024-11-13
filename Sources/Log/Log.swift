@@ -5,15 +5,17 @@ import NIOConcurrencyHelpers
 @_exported import LogKit
 
 
+
+
 extension Request {
     public var log: Log { .init(_request: self) }
     
     public struct Log: Sendable {
         public let _request: Request
         
-        public func log<Service>(_ service: Service, action: Service.Action, entry: Service.Entry)
+        public func log<Service>(_ service: Service, entry: Service.Entry)
         async throws where Service: LogKitServiceable {
-            try await service.log(action, entry: entry)
+            try await service.log(entry)
         }
     }
 }
